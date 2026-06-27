@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="614.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/26">
+<AnchorPane id="AnchorPane" prefHeight="602.0" prefWidth="614.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sams.controller.LoginviewController">
    <children>
       <Label fx:id="lblText" layoutX="123.0" layoutY="83.0" prefHeight="29.0" prefWidth="368.0" style="-fx-alignment: center; -fx-background-color: #636e72;" text="User Login" textFill="WHITE">
          <font>
