@@ -28,6 +28,13 @@ public class LoginviewController {
 
     @FXML
     void btnLoginOnAction(ActionEvent event) {
+        String password = txtPswrd.getText();
+        txtPswrd.setText("password");
+        
+        String user = txtUser.getText();
+        txtUser.setText("user");
+        
+        
 
     }
 

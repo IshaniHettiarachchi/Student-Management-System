@@ -3,5 +3,6 @@ module lk.ijse.sams {
     requires javafx.fxml;
 
     opens lk.ijse.sams to javafx.fxml;
+    opens sams.controller to javafx.fxml;
     exports lk.ijse.sams;
 }
