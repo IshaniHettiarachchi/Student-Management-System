@@ -44,26 +44,37 @@ public class LoginviewController {
         
         try {
 
-          boolean isValid = model.checkLogin(dto);
+          UserDTO loggedUser = model.checkLogin(dto);
 
-          if (isValid) {
+          if (loggedUser != null) {
 
-           System.out.println("Login Success");
+             System.out.println("Login Success");
 
-           App.setRoot("view/adminview");
+          if (loggedUser.getRole().equals("ADMIN")) {
 
-         } else {
+             App.setRoot("view/adminview");
 
-           System.out.println("Invalid Username or Password");
+           } else if (loggedUser.getRole().equals("LECTURER")) {
 
+             App.setRoot("view/lecturerview");
+ 
          }
 
-        } catch (SQLException | IOException e) {
+        } else {
 
-       e.printStackTrace();
+             System.out.println("Invalid Username or Password");
+
+          }
+
+         } catch (SQLException | IOException e) {
+
+        e.printStackTrace();
 
   }
- }
+   
+    }
+}
+ 
         
         
         
@@ -74,6 +85,6 @@ public class LoginviewController {
         
         
 
-    }
+    
 
 

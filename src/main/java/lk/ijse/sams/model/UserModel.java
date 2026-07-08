@@ -18,7 +18,7 @@ import lk.ijse.sams.dto.UserDTO;
 
 public class UserModel {
 
-    public boolean checkLogin(UserDTO dto) throws SQLException {
+    public UserDTO checkLogin(UserDTO dto) throws SQLException {
 
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -31,6 +31,16 @@ public class UserModel {
 
         ResultSet rs = stm.executeQuery();
 
-        return rs.next();
+        if (rs.next()) {
+
+         return new UserDTO(
+                rs.getString("username"),
+                rs.getString("password"),
+                rs.getString("role")
+            );
+
+        }
+
+      return null;
     }
 }

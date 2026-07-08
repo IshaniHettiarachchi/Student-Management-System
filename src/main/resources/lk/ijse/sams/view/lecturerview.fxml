@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="518.0" style="-fx-background-color: #dff9fb;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="lk.ijse.sams.controller.LecturerviewController" id="AnchorPane" prefHeight="422.0" prefWidth="518.0" style="-fx-background-color: #dff9fb;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="lbltext" layoutX="40.0" layoutY="33.0" prefHeight="46.0" prefWidth="450.0" style="-fx-alignment: center; -fx-background-color: #38ada9;" text="LECTURER MANAGEMENT">
          <font>
