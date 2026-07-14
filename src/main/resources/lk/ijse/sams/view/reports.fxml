@@ -9,30 +9,30 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="537.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.ReportsController">
    <children>
-      <Label layoutX="41.0" layoutY="26.0" prefHeight="39.0" prefWidth="592.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Attendance Reporting">
+      <Label layoutX="41.0" layoutY="26.0" prefHeight="39.0" prefWidth="630.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Attendance Reporting">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
       <Label fx:id="lblStudentID" layoutX="41.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="Student ID" />
       <Label fx:id="lblCourse" layoutX="185.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="Course" />
-      <Label fx:id="lblStartdate" layoutX="340.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="Start Date" />
+      <Label fx:id="lblStartdate" layoutX="360.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" text="Start Date" />
       <ComboBox fx:id="cmbStudentID" layoutX="38.0" layoutY="125.0" prefHeight="26.0" prefWidth="144.0" />
-      <ComboBox fx:id="cmbCourse" layoutX="185.0" layoutY="125.0" prefHeight="26.0" prefWidth="150.0" />
-      <TextField fx:id="lblStartdate" layoutX="337.0" layoutY="125.0" />
-      <Label fx:id="lblEnddate" layoutX="487.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="End date" />
-      <TextField fx:id="lblEnddate" layoutX="487.0" layoutY="125.0" prefHeight="26.0" prefWidth="144.0" />
-      <TableView fx:id="tblAttendance" layoutX="38.0" layoutY="197.0" prefHeight="306.0" prefWidth="592.0">
+      <ComboBox fx:id="cmbCourse" layoutX="185.0" layoutY="125.0" prefHeight="26.0" prefWidth="174.0" />
+      <TextField fx:id="txtStartdate" layoutX="363.0" layoutY="125.0" />
+      <Label fx:id="lblEnddate" layoutX="513.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="End date" />
+      <TextField fx:id="txtEnddate" layoutX="513.0" layoutY="125.0" prefHeight="26.0" prefWidth="158.0" />
+      <TableView fx:id="tblAttendance" layoutX="38.0" layoutY="197.0" prefHeight="374.0" prefWidth="630.0">
         <columns>
           <TableColumn fx:id="colStudentID" prefWidth="145.60003662109375" text="Student ID" />
-          <TableColumn fx:id="colCourse" prefWidth="156.79998779296875" text="Course" />
-            <TableColumn fx:id="colStartdate" prefWidth="148.79998779296875" text="Start Date" />
-            <TableColumn fx:id="colEnddate" prefWidth="141.5999755859375" text="End Date" />
+          <TableColumn fx:id="colCourse" prefWidth="202.4000244140625" text="Course" />
+            <TableColumn fx:id="colStartdate" prefWidth="130.39999389648438" text="Start Date" />
+            <TableColumn fx:id="colEnddate" prefWidth="150.4000244140625" text="End Date" />
         </columns>
       </TableView>
       <Button fx:id="btnSearch" layoutX="38.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: yellow;" text="Search" />
-      <Button fx:id="btnReset" layoutX="456.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #00cec9;" text="Reset" />
+      <Button fx:id="btnReset" layoutX="496.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #00cec9;" text="Reset" />
    </children>
 </AnchorPane>

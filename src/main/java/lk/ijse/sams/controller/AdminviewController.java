@@ -127,6 +127,24 @@ public class AdminviewController {
     
     @FXML
     void btnReportingOnAction(ActionEvent event) {
+        
+        try {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/sams/view/reports.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Reports Management");
+        stage.setScene(new Scene(root));
+        
+        stage.setWidth(700);
+        stage.setHeight(600);
+        
+        stage.show();
+
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
 
     }
 
