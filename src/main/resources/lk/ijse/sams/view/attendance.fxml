@@ -9,60 +9,64 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="656.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" fx:id="lblStatus" prefHeight="656.0" prefWidth="895.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.AttendanceController">
    <children>
-      <Label layoutX="33.0" layoutY="28.0" prefHeight="52.0" prefWidth="838.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Attendance Marking">
+      <Label fx:id="lblTopic" layoutX="33.0" layoutY="28.0" prefHeight="52.0" prefWidth="838.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Attendance Marking">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="33.0" layoutY="120.0" prefHeight="24.0" prefWidth="219.0" text="Class Session">
+      <Label fx:id="lblSession" layoutX="33.0" layoutY="120.0" prefHeight="24.0" prefWidth="219.0" text="Class Session">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="252.0" layoutY="120.0" prefHeight="24.0" prefWidth="158.0" text="Date">
+      <Label fx:id="lblDate" layoutX="252.0" layoutY="120.0" prefHeight="24.0" prefWidth="158.0" text="Date">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="441.0" layoutY="120.0" prefHeight="24.0" prefWidth="123.0" text="Studen ID">
+      <Label fx:id="lblStudentid" layoutX="441.0" layoutY="120.0" prefHeight="24.0" prefWidth="123.0" text="Studen ID">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField layoutX="35.0" layoutY="154.0" prefHeight="26.0" prefWidth="219.0" />
-      <ComboBox layoutX="441.0" layoutY="154.0" prefHeight="26.0" prefWidth="219.0" />
-      <TextField layoutX="253.0" layoutY="154.0" prefHeight="26.0" prefWidth="188.0" />
+      <TextField fx:id="txtSession" layoutX="35.0" layoutY="154.0" prefHeight="26.0" prefWidth="219.0" />
+      <ComboBox fx:id="cmbStudentId" layoutX="441.0" layoutY="154.0" prefHeight="26.0" prefWidth="219.0" />
+      <TextField fx:id="txtdate" layoutX="253.0" layoutY="154.0" prefHeight="26.0" prefWidth="188.0" />
       <Label layoutX="660.0" layoutY="120.0" prefHeight="24.0" prefWidth="150.0" text="Attendance Status">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ComboBox layoutX="660.0" layoutY="154.0" prefHeight="26.0" prefWidth="209.0" />
-      <Button layoutX="35.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="256.0" style="-fx-background-color: yellow;" text="Save">
+      <ComboBox fx:id="cmbStatus" layoutX="660.0" layoutY="154.0" prefHeight="26.0" prefWidth="209.0" />
+      <Button fx:id="btnSave" layoutX="35.0" layoutY="192.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="36.0" prefWidth="210.0" style="-fx-background-color: yellow;" text="Save">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="295.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="292.0" style="-fx-background-color: #ff7979;" text="Update">
+      <Button fx:id="btnUpdate" layoutX="254.0" layoutY="192.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="36.0" prefWidth="210.0" style="-fx-background-color: #ff7979;" text="Update">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="590.0" layoutY="192.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" style="-fx-background-color: #e056fd;" text="Delete">
+      <Button fx:id="btnDelete" layoutX="473.0" layoutY="192.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="36.0" prefWidth="202.0" style="-fx-background-color: #e056fd;" text="Delete">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <TableView layoutX="33.0" layoutY="245.0" prefHeight="369.0" prefWidth="838.0">
+      <TableView fx:id="tblAttendance" layoutX="33.0" layoutY="245.0" prefHeight="369.0" prefWidth="838.0">
         <columns>
-          <TableColumn prefWidth="179.20000839233398" text="Student ID" />
-          <TableColumn minWidth="0.0" prefWidth="198.40000915527344" text="Student Name" />
-            <TableColumn prefWidth="148.0" text="Attendance Status" />
-            <TableColumn prefWidth="144.79998779296875" text="Date" />
-            <TableColumn prefWidth="165.5999755859375" text="Session" />
+          <TableColumn fx:id="colId" prefWidth="179.20000839233398" text="Student ID" />
+            <TableColumn fx:id="colStatus" prefWidth="148.0" text="Attendance Status" />
+            <TableColumn fx:id="colDate" prefWidth="144.79998779296875" text="Date" />
+            <TableColumn fx:id="colSession" prefWidth="364.7999633789062" text="Session" />
         </columns>
       </TableView>
+      <Button fx:id="btnReset" layoutX="682.0" layoutY="192.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="36.0" prefWidth="188.0" style="-fx-background-color: #00b894;" text="Reset">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

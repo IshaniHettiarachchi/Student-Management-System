@@ -35,6 +35,24 @@ public class AdminviewController {
 
     @FXML
     void btnAttendanceOnAction(ActionEvent event) {
+        
+        try {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/sams/view/attendance.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Attendance Management");
+        stage.setScene(new Scene(root));
+        
+        stage.setWidth(895);
+        stage.setHeight(656);
+        
+        stage.show();
+
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
 
     }
 
