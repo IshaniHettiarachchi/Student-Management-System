@@ -40,6 +40,25 @@ public class AdminviewController {
 
     @FXML
     void btnClassOnAction(ActionEvent event) {
+        
+        try {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/sams/view/classsheduling_1.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Class Sheduling");
+        stage.setScene(new Scene(root));
+        
+        stage.setWidth(900);
+        stage.setHeight(700);
+        
+        stage.show();
+
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+    
 
     }
 
@@ -67,6 +86,24 @@ public class AdminviewController {
 
     @FXML
     void btnLectureOnAction(ActionEvent event) {
+        
+        try {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/sams/view/lecturemanage.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Lecture Management");
+        stage.setScene(new Scene(root));
+        
+        stage.setWidth(887);
+        stage.setHeight(700);
+        
+        stage.show();
+
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
 
     }
     
