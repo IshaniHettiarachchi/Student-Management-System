@@ -45,7 +45,24 @@ public class AdminviewController {
 
     @FXML
     void btnCourseOnAction(ActionEvent event) {
+        try {
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/lk/ijse/sams/view/coursemanage.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setTitle("Course Management");
+        stage.setScene(new Scene(root));
+        
+        stage.setWidth(1000);
+        stage.setHeight(700);
+        
+        stage.show();
+
+        } catch (IOException e) {
+        e.printStackTrace();
+        }
+    
     }
 
     @FXML
