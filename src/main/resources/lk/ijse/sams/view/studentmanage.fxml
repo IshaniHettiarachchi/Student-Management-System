@@ -8,20 +8,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="822.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.StudentmanageController">
    <children>
       <Label fx:id="lblStudent" layoutX="24.0" layoutY="26.0" prefHeight="30.0" prefWidth="275.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Student Management">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TableView fx:id="tblStudent" layoutX="326.0" layoutY="28.0" prefHeight="520.0" prefWidth="492.0">
+      <TableView fx:id="tblStudent" layoutX="326.0" layoutY="28.0" prefHeight="520.0" prefWidth="661.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="67.20001220703125" text="ID" />
-            <TableColumn fx:id="colName" minWidth="1.60003662109375" prefWidth="112.800048828125" text="Name" />
-            <TableColumn fx:id="colEmail" minWidth="1.60003662109375" prefWidth="114.40008544921875" text="Email" />
-            <TableColumn fx:id="colCourse" prefWidth="96.0" text="Course" />
-            <TableColumn fx:id="colcontact" prefWidth="97.60009765625" text="Contact" />
+            <TableColumn fx:id="colName" minWidth="1.60003662109375" prefWidth="177.60003662109375" text="Name" />
+            <TableColumn fx:id="colEmail" minWidth="1.60003662109375" prefWidth="169.5999755859375" text="Email" />
+            <TableColumn fx:id="colCourse" prefWidth="131.20001220703125" text="Course" />
+            <TableColumn fx:id="colcontact" prefWidth="116.0" text="Contact" />
         </columns>
       </TableView>
       <Label fx:id="lblId" layoutX="24.0" layoutY="98.0" prefHeight="18.0" prefWidth="118.0" text="Student ID">
