@@ -26,16 +26,10 @@ public class CoursemanageController {
     private TableColumn<?, ?> colDuration;
 
     @FXML
-    private TableColumn<?, ?> colEnddate;
-
-    @FXML
     private TableColumn<?, ?> colID;
 
     @FXML
     private TableColumn<?, ?> colName;
-
-    @FXML
-    private TableColumn<?, ?> colStartdate;
 
     @FXML
     private TableColumn<?, ?> colSubject;
@@ -53,12 +47,6 @@ public class CoursemanageController {
     private Label lblSubject;
 
     @FXML
-    private Label lblTime;
-
-    @FXML
-    private Label lblTime1;
-
-    @FXML
     private Label lblduration;
 
     @FXML
@@ -66,9 +54,6 @@ public class CoursemanageController {
 
     @FXML
     private TextField txtDuration;
-
-    @FXML
-    private TextField txtDuration1;
 
     @FXML
     private TextField txtID;

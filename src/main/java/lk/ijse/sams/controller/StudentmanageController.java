@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import lk.ijse.sams.dto.StudentDTO;
 
 public class StudentmanageController {
 
@@ -41,7 +42,7 @@ public class StudentmanageController {
     private Label lblContact;
 
     @FXML
-    private Label lblCourse;
+    private Label lblCourseId;
 
     @FXML
     private Label lblEmail;
@@ -62,6 +63,9 @@ public class StudentmanageController {
     private TextField txtContact;
 
     @FXML
+    private TextField txtCourse;
+
+    @FXML
     private TextField txtEmail;
 
     @FXML
@@ -71,15 +75,23 @@ public class StudentmanageController {
     private TextField txtName;
 
     @FXML
-    private TextField txtScourse;
-
-    @FXML
     void btnDeleteOnAction(ActionEvent event) {
 
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
+        
+        String id = txtID.getText();
+        String name = txtName.getText();
+        String email = txtEmail.getText();
+        String course = txtCourse.getText();
+        String contact = txtContact.getText();
+        
+        StudentDTO dto = new StudentDTO(Integer.parseInt(id), name, email, course, contact);
+        
+        
+       
 
     }
 

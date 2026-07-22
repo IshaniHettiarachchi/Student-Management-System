@@ -4,10 +4,26 @@
  */
 package lk.ijse.sams.dto;
 
+
+
 /**
  *
  * @author USER
  */
 public class StudentDTO {
+    
+    private int id;
+    private String name;
+    private String email;
+    private String course;
+    private String contact;
+    
+    
+    
+}
+public StudentDTO (){
+}
+
+public StudentDTO(String id, String name,){
     
 }
