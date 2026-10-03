@@ -97,7 +97,7 @@ public class StudentmanageController {
         StudentDTO dto = new StudentDTO(studentid, name, email, courseid, contact);
         
         try{
-            boolean saved = StudentModel.savestudent(dto);
+            boolean saved = StudentModel.saveStudent(dto);
             if(saved){
                 System.out.println("Student saved successfully!");
                 
@@ -118,7 +118,32 @@ public class StudentmanageController {
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
-
+        
+        String studentid = txtID.getText();
+        String name = txtName.getText();
+        String email = txtEmail.getText();
+        String courseid = txtCourse.getText();
+        String contact = txtContact.getText();
+        
+        StudentDTO dto = new StudentDTO(studentid, name, email, courseid, contact);
+        
+        try{
+            boolean updated = StudentModel.updateStudent(dto);
+            if(updated){
+                System.out.println("Student updated successfully!");
+                
+                 txtID.clear();
+                 txtName.clear();
+                 txtEmail.clear();
+                 txtCourse.clear();
+                 txtContact.clear();
+            }else{
+                System.out.println("Student updated failed!");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+       
     }
 
     @FXML

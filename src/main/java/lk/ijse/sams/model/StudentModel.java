@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import lk.ijse.sams.db.DBConnection;
@@ -19,21 +20,20 @@ import lk.ijse.sams.dto.StudentDTO;
  */
 public class StudentModel {
     
-    public static boolean savestudent(StudentDTO dto)throws SQLException{
-        
-        String sql = "INSERT INTO student" + "(student_id, name, email, course_id, contact)" + "VALUES(?, ?, ?, ?, ?)";
+    public static boolean saveStudent(StudentDTO dto)throws SQLException{
         
         Connection connection = DBConnection.getInstance().getConnection();
         
-         PreparedStatement pst = connection.prepareStatement(sql);
-
-        pst.setString(1, dto.getStudentId());
-        pst.setString(2, dto.getName());
-        pst.setString(3, dto.getEmail());
-        pst.setString(4, dto.getCourseId());
-        pst.setString(5, dto.getContact());
-
-        return pst.executeUpdate() > 0;
+        if(connection != null){
+          String sql = "INSERT INTO student(student_id, name, email, course_id, contact) VALUES (" + "'" + dto.getStudentId() + "', " + "'" + dto.getName() + "', "+ "'" + dto.getEmail() + "', "+ "'" + dto.getCourseId() + "', "+ "'" + dto.getContact() + "')";
+            
+          Statement stm = connection.createStatement();
+          
+          int result = stm.executeUpdate(sql);
+          return result > 0;
+        }
+        return false;
+        
     }
     
     public static List<StudentDTO> getAllStudents() throws SQLException {
@@ -42,9 +42,9 @@ public class StudentModel {
 
     Connection connection = DBConnection.getInstance().getConnection();
 
-    PreparedStatement pst = connection.prepareStatement(sql);
+    Statement stm = connection.createStatement();
 
-    ResultSet rs = pst.executeQuery();
+    ResultSet rs = stm.executeQuery(sql);
 
     List<StudentDTO> studentList = new ArrayList<>();
 
@@ -62,6 +62,22 @@ public class StudentModel {
     }
 
     return studentList;
-}
+    }
+    
+    public static boolean updateStudent(StudentDTO dto)throws SQLException{
+        
+        Connection connection = DBConnection.getInstance().getConnection();
+        
+        if(connection != null){
+          String sql = "UPDATE student SET " + "name = '" + dto.getName() + "', " + "email = '" + dto.getEmail() + "'," + "course_id = '" + dto.getCourseId() + "', " + "contact = '" + dto.getContact() + "' " + " WHERE student_id = '" + dto.getStudentId() + "'"; 
+            
+          Statement stm = connection.createStatement();
+          
+          int result = stm.executeUpdate(sql);
+          return result > 0;
+        }
+        return false;
+        
+    }
     
 }
