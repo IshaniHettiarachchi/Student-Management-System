@@ -17,10 +17,10 @@
       </Label>
       <TableView fx:id="tblStudent" layoutX="326.0" layoutY="28.0" prefHeight="520.0" prefWidth="661.0">
         <columns>
-          <TableColumn fx:id="colID" prefWidth="67.20001220703125" text="ID" />
+          <TableColumn fx:id="colID" prefWidth="67.20001220703125" text="Student ID" />
             <TableColumn fx:id="colName" minWidth="1.60003662109375" prefWidth="177.60003662109375" text="Name" />
             <TableColumn fx:id="colEmail" minWidth="1.60003662109375" prefWidth="169.5999755859375" text="Email" />
-            <TableColumn fx:id="colCourse" prefWidth="131.20001220703125" text="Course" />
+            <TableColumn fx:id="colCourse" prefWidth="131.20001220703125" text="Course ID" />
             <TableColumn fx:id="colcontact" prefWidth="116.0" text="Contact" />
         </columns>
       </TableView>
@@ -63,7 +63,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <Button fx:id="btnView" layoutX="257.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnViewOnACtion" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #00b894;" text="View">
+      <Button fx:id="btnView" layoutX="257.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnViewOnAction" prefHeight="31.0" prefWidth="63.0" style="-fx-background-color: #00b894;" text="View">
          <font>
             <Font size="15.0" />
          </font>

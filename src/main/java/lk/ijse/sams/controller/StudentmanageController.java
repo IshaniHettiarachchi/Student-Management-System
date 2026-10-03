@@ -8,6 +8,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import lk.ijse.sams.dto.StudentDTO;
+import java.sql.SQLException;
+import lk.ijse.sams.model.StudentModel;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 
 public class StudentmanageController {
 
@@ -24,19 +30,19 @@ public class StudentmanageController {
     private Button btnView;
 
     @FXML
-    private TableColumn<?, ?> colCourse;
+    private TableColumn<StudentDTO, String> colCourse;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<StudentDTO, String> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colID;
+    private TableColumn<StudentDTO, String> colID;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<StudentDTO, String> colName;
 
     @FXML
-    private TableColumn<?, ?> colcontact;
+    private TableColumn<StudentDTO, String> colcontact;
 
     @FXML
     private Label lblContact;
@@ -57,7 +63,7 @@ public class StudentmanageController {
     private Label lblStudent;
 
     @FXML
-    private TableView<?> tblStudent;
+    private TableView<StudentDTO> tblStudent;
 
     @FXML
     private TextField txtContact;
@@ -82,15 +88,30 @@ public class StudentmanageController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         
-        String id = txtID.getText();
+        String studentid = txtID.getText();
         String name = txtName.getText();
         String email = txtEmail.getText();
-        String course = txtCourse.getText();
+        String courseid = txtCourse.getText();
         String contact = txtContact.getText();
         
-        StudentDTO dto = new StudentDTO(Integer.parseInt(id), name, email, course, contact);
+        StudentDTO dto = new StudentDTO(studentid, name, email, courseid, contact);
         
-        
+        try{
+            boolean saved = StudentModel.savestudent(dto);
+            if(saved){
+                System.out.println("Student saved successfully!");
+                
+                 txtID.clear();
+                 txtName.clear();
+                 txtEmail.clear();
+                 txtCourse.clear();
+                 txtContact.clear();
+            }else{
+                System.out.println("Student saved failed!");
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
        
 
     }
@@ -101,7 +122,23 @@ public class StudentmanageController {
     }
 
     @FXML
-    void btnViewOnACtion(ActionEvent event) {
+    void btnViewOnAction(ActionEvent event) {
+        
+        try{
+            
+          ObservableList<StudentDTO> studentList = FXCollections.observableArrayList(StudentModel.getAllStudents());
+          
+          colID.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+          colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+          colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+          colCourse.setCellValueFactory(new PropertyValueFactory<>("courseId"));
+          colcontact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+          
+          tblStudent.setItems(studentList);
+          
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
 
     }
 

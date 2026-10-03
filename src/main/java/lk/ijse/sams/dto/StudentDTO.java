@@ -18,26 +18,23 @@ public class StudentDTO {
     private String courseid;
     private String contact;
     
-    
-    
+    public StudentDTO (){
+    }
 
-public StudentDTO (){
-}
-
-public StudentDTO(String studentid, String name, String email, String courseid,  String contact ){
-    this.studentid =studentid;
-    this.name = name;
-    this.email = email;
-    this.courseid = courseid;
-    this.contact = contact;
+    public StudentDTO(String studentid, String name, String email, String courseid,  String contact ){
+           this.studentid =studentid;
+           this.name = name;
+           this.email = email;
+           this.courseid = courseid;
+           this.contact = contact;
     
-}
- public String getStudentid() {
+    }
+    public String getStudentId() {
         return studentid;
     }
 
     public void setStudentId(String studentId) {
-        this.studentid = studentid;
+        this.studentid = studentId;
     }
 
     public String getName() {
@@ -61,7 +58,7 @@ public StudentDTO(String studentid, String name, String email, String courseid, 
     }
 
     public void setCourseId(String courseId) {
-        this.courseid = courseid;
+        this.courseid = courseId;
     }
 
     public String getContact() {
