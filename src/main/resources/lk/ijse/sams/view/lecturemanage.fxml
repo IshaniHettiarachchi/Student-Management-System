@@ -58,6 +58,6 @@
          </font>
       </Label>
       <TextField fx:id="txtID" layoutX="699.0" layoutY="110.0" prefHeight="34.0" prefWidth="163.0" />
-      <Button fx:id="btnReset" layoutX="684.0" layoutY="156.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #00b894;" text="Reset" />
+      <Button fx:id="btnReset" layoutX="684.0" layoutY="156.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="44.0" prefWidth="179.0" style="-fx-background-color: #00b894;" text="Reset" />
    </children>
 </AnchorPane>

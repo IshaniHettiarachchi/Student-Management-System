@@ -19,7 +19,7 @@ public class CourseDTO {
     public CourseDTO (){
     }
     
-    public CourseDTO(String courseid, String name, String subject, String duration, String string4){
+    public CourseDTO(String courseid, String name, String subject, String duration){
            this.courseid =courseid;
            this.name = name;
            this.subject = subject;

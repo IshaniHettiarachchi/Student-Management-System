@@ -120,7 +120,8 @@ public class CoursemanageController {
         }catch(SQLException e){
             e.printStackTrace();
         }
-
+        
+        loadAllCourses();
     }
 
     @FXML
@@ -154,6 +155,7 @@ public class CoursemanageController {
                 alert.setContentText("Course saved successfully!");
                 alert.showAndWait();
              
+               loadAllCourses();
                
             }else{
                 System.out.println("Course saved failed!");
@@ -190,6 +192,8 @@ public class CoursemanageController {
                 alert.setHeaderText(null);
                 alert.setContentText("Course saved successfully!");
                 alert.showAndWait();
+                
+                loadAllCourses();
                 
             }else{
                 System.out.println("Course saved failed!");

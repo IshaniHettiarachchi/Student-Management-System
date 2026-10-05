@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lk.ijse.sams.db.DBConnection;
 import lk.ijse.sams.dto.CourseDTO;
-import lk.ijse.sams.dto.StudentDTO;
+
 
 /**
  *
@@ -41,7 +41,7 @@ public class CourseModel {
         Connection connection = DBConnection.getInstance().getConnection();
         
         if(connection != null){
-          String sql = "UPDATE course SET " + "name = '" + dto.getName() + "', " + "subject = '" + dto.getSubject() + "'," + "duration = '" + dto.getDuration() + "', "  + " WHERE course_id = '" + dto.getCourseId() + "'"; 
+          String sql = "UPDATE course SET " + "name = '" + dto.getName() + "', " + "subjects = '" + dto.getSubject() + "'," + "duration = '" + dto.getDuration() + "' "  + " WHERE course_id = '" + dto.getCourseId() + "'"; 
             
           Statement stm = connection.createStatement();
           
@@ -68,21 +68,21 @@ public class CourseModel {
         return false;
     }
     
-     public static List<CourseDTO> getAllCourses() throws SQLException {
+    public static List<CourseDTO> getAllCourses() throws SQLException {
 
-    String sql = "SELECT * FROM course";
+       String sql = "SELECT * FROM course";
 
-    Connection connection = DBConnection.getInstance().getConnection();
+       Connection connection = DBConnection.getInstance().getConnection();
 
-    Statement stm = connection.createStatement();
+       Statement stm = connection.createStatement();
 
-    ResultSet rs = stm.executeQuery(sql);
+       ResultSet rs = stm.executeQuery(sql);
 
-    List<CourseDTO> courseList = new ArrayList<>();
+       List<CourseDTO> courseList = new ArrayList<>();
 
-    while (rs.next()) {
+       while (rs.next()) {
 
-        CourseDTO dto = new CourseDTO(
+         CourseDTO dto = new CourseDTO(
                 rs.getString("course_id"),
                 rs.getString("name"),
                 rs.getString("subjects"),
@@ -94,5 +94,27 @@ public class CourseModel {
 
     return courseList;
     }
+    
+     public static List<String> getAllSubjects() throws SQLException {
+
+       String sql = "SELECT subjects FROM course";
+
+       Connection connection = DBConnection.getInstance().getConnection();
+
+       Statement stm = connection.createStatement();
+
+       ResultSet rs = stm.executeQuery(sql);
+
+       List<String> subjectList = new ArrayList<>();
+
+       while (rs.next()) {
+
+         subjectList.add(rs.getString("subjects"));
+
+       }
+
+    return subjectList;
+    }
       
+    
 }
