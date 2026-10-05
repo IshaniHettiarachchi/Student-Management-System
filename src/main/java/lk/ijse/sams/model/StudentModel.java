@@ -78,6 +78,22 @@ public class StudentModel {
         }
         return false;
         
+    
+    }
+    
+    public static boolean deleteStudent(String studentId) throws SQLException {
+        
+        Connection connection = DBConnection.getInstance().getConnection();
+        
+        if(connection != null){
+          String sql = "DELETE FROM student " + " WHERE student_id = '" + studentId + "'"; 
+            
+          Statement stm = connection.createStatement();
+          
+          int result = stm.executeUpdate(sql);
+          return result > 0;
+        }
+        return false;
     }
     
 }

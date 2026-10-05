@@ -13,6 +13,7 @@ import lk.ijse.sams.model.StudentModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Alert;
 
 
 public class StudentmanageController {
@@ -82,7 +83,41 @@ public class StudentmanageController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        
+        String studenId = txtID.getText();
+        
+        try{
+            boolean deleted = StudentModel.deleteStudent(studenId);
+            
+            if(deleted){
+                System.out.println("Student deleted successfully!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Student deleted successfully!");
+                alert.showAndWait();
+                
+                 txtID.clear();
+                 txtName.clear();
+                 txtEmail.clear();
+                 txtCourse.clear();
+                 txtContact.clear();
+                
+                
+            }else{
+                System.out.println("Student deleted failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Student deleted failed!");
+                alert.showAndWait();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+       
     }
 
     @FXML
@@ -101,6 +136,12 @@ public class StudentmanageController {
             if(saved){
                 System.out.println("Student saved successfully!");
                 
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Student saved successfully!");
+                alert.showAndWait();
+                
                  txtID.clear();
                  txtName.clear();
                  txtEmail.clear();
@@ -108,6 +149,12 @@ public class StudentmanageController {
                  txtContact.clear();
             }else{
                 System.out.println("Student saved failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Student saved failed!");
+                alert.showAndWait();
             }
         }catch(SQLException e){
             e.printStackTrace();
@@ -132,6 +179,12 @@ public class StudentmanageController {
             if(updated){
                 System.out.println("Student updated successfully!");
                 
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Student updated successfully!");
+                alert.showAndWait();
+                
                  txtID.clear();
                  txtName.clear();
                  txtEmail.clear();
@@ -139,6 +192,12 @@ public class StudentmanageController {
                  txtContact.clear();
             }else{
                 System.out.println("Student updated failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Student deleted failed!");
+                alert.showAndWait();
             }
         }catch(SQLException e){
             e.printStackTrace();
