@@ -13,6 +13,7 @@ import javafx.scene.control.Alert;
 import lk.ijse.sams.dto.LecturerDTO;
 import lk.ijse.sams.dto.StudentDTO;
 import lk.ijse.sams.model.CourseModel;
+import lk.ijse.sams.model.LecturerModel;
 import lk.ijse.sams.model.StudentModel;
 
 public class LecturermanageController {
@@ -86,11 +87,48 @@ public class LecturermanageController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        
+        String lecturerId = txtID.getText();
+        
+        try{
+            boolean deleted = LecturerModel.deleteLecturer(lecturerId);
+            
+            if(deleted){
+                System.out.println("Lecturer deleted successfully!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Lecturerdeleted successfully!");
+                alert.showAndWait();
+          
+            }else{
+                System.out.println("Lecturer deleted failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Lecturer deleted failed!");
+                alert.showAndWait();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        
+        
+    
 
     }
 
     @FXML
     void btnResetOnAction(ActionEvent event) {
+        
+        txtID.clear();
+        txtName.clear();
+        txtEmail.clear();
+        cmbSubject.setValue(null);
+
 
     }
 
@@ -105,7 +143,7 @@ public class LecturermanageController {
         LecturerDTO dto = new LecturerDTO(lecturerid, name, email, subject);
         
         try{
-            boolean saved = StudentModel.saveStudent(dto);
+            boolean saved = LecturerModel.saveLecturer(dto);
             if(saved){
                 System.out.println("Lecturer saved successfully!");
                 
@@ -136,37 +174,34 @@ public class LecturermanageController {
     @FXML
     void btnUpdateOnAction(ActionEvent event) {
         
-        String studentid = txtID.getText();
+        String lecturerid = txtID.getText();
         String name = txtName.getText();
         String email = txtEmail.getText();
-        String courseid = txtCourse.getText();
-        String contact = txtContact.getText();
+        String subject = cmbSubject.getValue();
+       
         
-        StudentDTO dto = new StudentDTO(studentid, name, email, courseid, contact);
+        LecturerDTO dto = new LecturerDTO(lecturerid, name, email, subject);
         
         try{
-            boolean updated = StudentModel.updateStudent(dto);
+            boolean updated = LecturerModel.updateLecturer(dto);
+            
             if(updated){
-                System.out.println("Student updated successfully!");
+                System.out.println("Lecturer updated successfully!");
                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Success");
                 alert.setHeaderText(null);
-                alert.setContentText("Student updated successfully!");
+                alert.setContentText("Lecturer updated successfully!");
                 alert.showAndWait();
                 
-                 txtID.clear();
-                 txtName.clear();
-                 txtEmail.clear();
-                 txtCourse.clear();
-                 txtContact.clear();
+                
             }else{
-                System.out.println("Student updated failed!");
+                System.out.println("Lecturer updated failed!");
                 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error");
                 alert.setHeaderText(null);
-                alert.setContentText("Student deleted failed!");
+                alert.setContentText("Lecturer deleted failed!");
                 alert.showAndWait();
             }
         }catch(SQLException e){
