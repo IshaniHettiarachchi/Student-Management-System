@@ -9,12 +9,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.sams.dto.LecturerDTO;
-import lk.ijse.sams.dto.StudentDTO;
 import lk.ijse.sams.model.CourseModel;
 import lk.ijse.sams.model.LecturerModel;
-import lk.ijse.sams.model.StudentModel;
+
 
 public class LecturermanageController {
 
@@ -34,16 +36,16 @@ public class LecturermanageController {
     private ComboBox<String> cmbSubject;
 
     @FXML
-    private TableColumn<?, ?> colEmail;
+    private TableColumn<LecturerDTO, String> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<LecturerDTO, String> colId;
 
     @FXML
-    private TableColumn<?, ?> colName;
+    private TableColumn<LecturerDTO, String> colName;
 
     @FXML
-    private TableColumn<?, ?> colSubject;
+    private TableColumn<LecturerDTO, String> colSubject;
 
     @FXML
     private Label lblEmail;
@@ -61,7 +63,7 @@ public class LecturermanageController {
     private Label lblSubject;
 
     @FXML
-    private TableView<?> tblLecturer;
+    private TableView<LecturerDTO> tblLecturer;
 
     @FXML
     private TextField txtEmail;
@@ -84,6 +86,26 @@ public class LecturermanageController {
            e.printStackTrace();
         }
     }
+    
+     private void loadAllLecturer(){
+        
+        try{
+            
+          ObservableList<LecturerDTO> lecturerList = FXCollections.observableArrayList(LecturerModel.getAllLecturer());
+          
+          colId.setCellValueFactory(new PropertyValueFactory<>("lecturerId"));
+          colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+          colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
+          colSubject.setCellValueFactory(new PropertyValueFactory<>("subject"));
+          
+          tblLecturer.setItems(lecturerList);
+          
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
+
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
@@ -115,10 +137,7 @@ public class LecturermanageController {
             e.printStackTrace();
         }
         
-        
-        
-    
-
+        loadAllLecturer();
     }
 
     @FXML
@@ -167,7 +186,7 @@ public class LecturermanageController {
             e.printStackTrace();
         }
        
-
+        loadAllLecturer();
 
     }
 
@@ -208,7 +227,7 @@ public class LecturermanageController {
             e.printStackTrace();
         }
        
-
+        loadAllLecturer();
     }
 
     @FXML

@@ -5,8 +5,11 @@
 package lk.ijse.sams.model;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import lk.ijse.sams.db.DBConnection;
 import lk.ijse.sams.dto.CourseDTO;
 import lk.ijse.sams.dto.LecturerDTO;
@@ -38,7 +41,7 @@ public class LecturerModel {
         Connection connection = DBConnection.getInstance().getConnection();
         
         if(connection != null){
-          String sql = "UPDATE lecturer SET " + "name = '" + dto.getName() + "', " + "subjects = '" + dto.getSubject() + "'," + " WHERE lecturer_id = '" + dto.getLecturerId() + "'"; 
+          String sql = "UPDATE lecturer SET " + "name = '" + dto.getName() + "', " + "subject = '" + dto.getSubject() + "'" + " WHERE lecturer_id = '" + dto.getLecturerId() + "'"; 
             
           Statement stm = connection.createStatement();
           
@@ -48,6 +51,48 @@ public class LecturerModel {
         return false;
         
     
+    }
+    
+     public static boolean deleteLecturer(String lecturerId) throws SQLException {
+        
+        Connection connection = DBConnection.getInstance().getConnection();
+        
+        if(connection != null){
+          String sql = "DELETE FROM lecturer " + " WHERE lecturer_id = '" + lecturerId + "'"; 
+            
+          Statement stm = connection.createStatement();
+          
+          int result = stm.executeUpdate(sql);
+          return result > 0;
+        }
+        return false;
+    }
+     
+      public static List<LecturerDTO> getAllLecturer() throws SQLException {
+
+       String sql = "SELECT * FROM lecturer";
+
+       Connection connection = DBConnection.getInstance().getConnection();
+
+       Statement stm = connection.createStatement();
+
+       ResultSet rs = stm.executeQuery(sql);
+
+       List<LecturerDTO> lecturerList = new ArrayList<>();
+
+       while (rs.next()) {
+
+         LecturerDTO dto = new LecturerDTO(
+                rs.getString("lecturer_id"),
+                rs.getString("name"),
+                rs.getString("email"),
+                rs.getString("subject")
+        );
+
+        lecturerList.add(dto);
+    }
+
+    return lecturerList;
     }
     
 }
