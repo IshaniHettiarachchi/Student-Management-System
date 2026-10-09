@@ -11,7 +11,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import lk.ijse.sams.db.DBConnection;
-import lk.ijse.sams.dto.CourseDTO;
 import lk.ijse.sams.dto.LecturerDTO;
 
 /**
@@ -93,6 +92,28 @@ public class LecturerModel {
     }
 
     return lecturerList;
+    }
+    
+   
+    public static List<String> getAllLecturerIds() throws SQLException {
+
+       String sql = "SELECT lecturer_id FROM lecturer";
+
+       Connection connection = DBConnection.getInstance().getConnection();
+
+       Statement stm = connection.createStatement();
+
+       ResultSet rs = stm.executeQuery(sql);
+
+       List<String> lecturerList = new ArrayList<>();
+
+       while (rs.next()) {
+
+         lecturerList.add(rs.getString("lecturer_id"));
+
+       }
+
+       return lecturerList;
     }
     
 }

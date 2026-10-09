@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="txtEtime" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.ClassShedulingController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.ClassShedulingController">
    <children>
       <Label fx:id="lblClass" layoutX="51.0" layoutY="35.0" prefHeight="46.0" prefWidth="815.0" style="-fx-alignment: center; -fx-background-color: #38ada9;" text="Class Scheduling">
          <font>
@@ -37,7 +37,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lblcourse" layoutX="279.0" layoutY="104.0" prefHeight="26.0" prefWidth="180.0" text="Course">
+      <Label fx:id="lblcourse" layoutX="279.0" layoutY="104.0" prefHeight="26.0" prefWidth="180.0" text="Course ID">
          <font>
             <Font size="14.0" />
          </font>
@@ -45,14 +45,14 @@
       <TextField fx:id="txtSessionName" layoutX="51.0" layoutY="140.0" prefHeight="26.0" prefWidth="207.0" />
       <TextField fx:id="txtdate" layoutX="686.0" layoutY="140.0" prefHeight="26.0" prefWidth="180.0" />
       <ComboBox fx:id="cmbSubject" layoutX="475.0" layoutY="140.0" prefHeight="26.0" prefWidth="188.0" />
-      <ComboBox fx:id="cmbCourse" layoutX="279.0" layoutY="140.0" prefHeight="26.0" prefWidth="180.0" />
+      <ComboBox fx:id="cmbCourseID" layoutX="279.0" layoutY="140.0" prefHeight="26.0" prefWidth="180.0" />
       <TableView fx:id="tblClass" layoutX="51.0" layoutY="301.0" prefHeight="361.0" prefWidth="815.0">
         <columns>
           <TableColumn fx:id="colSession" prefWidth="135.99996185302734" text="Session Name" />
-          <TableColumn fx:id="colcourse" minWidth="0.0" prefWidth="130.40005493164062" text="Course" />
-            <TableColumn fx:id="colSubject" prefWidth="119.99993896484375" text="Subject" />
-            <TableColumn fx:id="coldate" prefWidth="112.00003051757812" text="Date" />
-            <TableColumn fx:id="collecturer" prefWidth="102.4000244140625" text="Lecturer ID" />
+          <TableColumn fx:id="colcourse" minWidth="0.0" prefWidth="92.00001525878906" text="Course" />
+            <TableColumn fx:id="colSubject" prefWidth="125.5999755859375" text="Subject" />
+            <TableColumn fx:id="coldate" prefWidth="104.0" text="Date" />
+            <TableColumn fx:id="collecturer" prefWidth="146.4000244140625" text="Lecturer ID" />
             <TableColumn fx:id="colStarttime" prefWidth="109.5999755859375" text="Start Time" />
             <TableColumn fx:id="colEndtime" prefWidth="106.4000244140625" text="End Time" />
         </columns>
@@ -68,7 +68,7 @@
          </font>
       </Label>
       <TextField fx:id="txtStime" layoutX="279.0" layoutY="214.0" prefHeight="26.0" prefWidth="180.0" />
-      <TextField layoutX="475.0" layoutY="214.0" prefHeight="26.0" prefWidth="188.0" />
+      <TextField fx:id="txtEtime" layoutX="475.0" layoutY="214.0" prefHeight="26.0" prefWidth="188.0" />
       <Button fx:id="btnSave" layoutX="51.0" layoutY="256.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="34.0" prefWidth="207.0" style="-fx-background-color: yellow;" text="Save">
          <font>
             <Font size="15.0" />
@@ -89,7 +89,7 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <ComboBox fx:id="cmblecturer" layoutX="51.0" layoutY="214.0" prefHeight="26.0" prefWidth="170.0" />
+      <ComboBox fx:id="cmblecturerID" layoutX="51.0" layoutY="214.0" prefHeight="26.0" prefWidth="170.0" />
       <HBox prefHeight="100.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

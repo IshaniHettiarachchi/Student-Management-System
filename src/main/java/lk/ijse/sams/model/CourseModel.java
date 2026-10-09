@@ -95,7 +95,7 @@ public class CourseModel {
     return courseList;
     }
     
-     public static List<String> getAllSubjects() throws SQLException {
+    public static List<String> getAllSubjects() throws SQLException {
 
        String sql = "SELECT subjects FROM course";
 
@@ -116,5 +116,26 @@ public class CourseModel {
     return subjectList;
     }
       
+    public static List<String> getAllCourseIds() throws SQLException {
+
+       String sql = "SELECT course_id FROM course";
+
+       Connection connection = DBConnection.getInstance().getConnection();
+
+       Statement stm = connection.createStatement();
+
+       ResultSet rs = stm.executeQuery(sql);
+
+       List<String> courseList = new ArrayList<>();
+
+       while (rs.next()) {
+
+         courseList.add(rs.getString("course_id"));
+
+       }
+
+    return courseList;
+    }
+    
     
 }

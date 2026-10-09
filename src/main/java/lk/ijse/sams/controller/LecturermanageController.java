@@ -77,11 +77,9 @@ public class LecturermanageController {
     @FXML
     public void initialize(){
         
-        try{
+         try{
+            cmbSubject.getItems().addAll(CourseModel.getAllSubjects());
             
-            cmbSubject.getItems().addAll(
-                    CourseModel.getAllSubjects()
-            );
         } catch (SQLException e){
            e.printStackTrace();
         }
