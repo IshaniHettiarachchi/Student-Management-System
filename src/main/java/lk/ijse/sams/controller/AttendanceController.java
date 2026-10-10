@@ -13,11 +13,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.sams.bo.custom.AttendanceBO;
+import lk.ijse.sams.bo.custom.StudentBO;
+import lk.ijse.sams.bo.custom.impl.AttendanceBOImpl;
+import lk.ijse.sams.bo.custom.impl.StudentBOImpl;
 import lk.ijse.sams.dto.AttendanceDTO;
 import lk.ijse.sams.model.AttendanceModel;
 import lk.ijse.sams.model.StudentModel;
 
 public class AttendanceController {
+    
+private final AttendanceBO attendanceBO = new AttendanceBOImpl();
+private final StudentBO studentBO = new StudentBOImpl();
 
     @FXML
     private Button btnDelete;
@@ -85,7 +92,7 @@ public class AttendanceController {
     private void loadstudentIds(){
         
         try{
-            cmbStudentID.getItems().setAll(StudentModel.getAllStudentIds());
+            cmbStudentID.getItems().setAll(studentBO.getAllStudentIds());
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -116,7 +123,7 @@ public class AttendanceController {
         String sessionName = dto.getSessionName();
         
         try{
-            boolean deleted = AttendanceModel.deleteAttendance(studenId, sessionName);
+            boolean deleted = attendanceBO.deleteAttendance(studenId, sessionName);
             
             if(deleted){
                 System.out.println("Attendance deleted successfully!");
@@ -161,7 +168,7 @@ public class AttendanceController {
         AttendanceDTO dto = new AttendanceDTO(studentId, sessionName, date, status);
         
         try{
-            boolean saved = AttendanceModel.saveAttendance(dto);
+            boolean saved = attendanceBO.saveAttendance(dto);
             
             if(saved){
                 System.out.println("Attendance saved successfully!");
@@ -192,7 +199,7 @@ public class AttendanceController {
          String studentId = cmbStudentID.getValue();
          
         try {
-            ObservableList<AttendanceDTO> attendanceList = FXCollections.observableArrayList(AttendanceModel.searchAttendance(sessionName));
+            ObservableList<AttendanceDTO> attendanceList = FXCollections.observableArrayList(attendanceBO.searchAttendance(sessionName));
 
             tblAttendance.setItems(attendanceList);
 
@@ -220,7 +227,7 @@ public class AttendanceController {
         AttendanceDTO dto = new AttendanceDTO( studentId, sessionName, date, status);
         
         try{
-            boolean updated = AttendanceModel.updateAttendance(dto);
+            boolean updated = attendanceBO.updateAttendance(dto);
             
             if(updated){
                 System.out.println("Attendance updated successfully!");
@@ -257,7 +264,7 @@ public class AttendanceController {
         
         try{
             
-          ObservableList<AttendanceDTO> attendanceList = FXCollections.observableArrayList(AttendanceModel.getAllAttendance());
+          ObservableList<AttendanceDTO> attendanceList = FXCollections.observableArrayList(attendanceBO.getAllAttendance());
           
           tblAttendance.setItems(attendanceList);
           
