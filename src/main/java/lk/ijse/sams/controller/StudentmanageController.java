@@ -9,7 +9,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import lk.ijse.sams.dto.StudentDTO;
 import java.sql.SQLException;
-import lk.ijse.sams.model.StudentModel;
+import lk.ijse.sams.bo.custom.StudentBO;
+import lk.ijse.sams.bo.custom.impl.StudentBOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +18,8 @@ import javafx.scene.control.Alert;
 
 
 public class StudentmanageController {
+    
+    private final StudentBO studentBO = new StudentBOImpl();
 
     @FXML
     private Button btnDelete;
@@ -87,7 +90,7 @@ public class StudentmanageController {
         String studenId = txtID.getText();
         
         try{
-            boolean deleted = StudentModel.deleteStudent(studenId);
+            boolean deleted = studentBO.deleteStudent(studenId);
             
             if(deleted){
                 System.out.println("Student deleted successfully!");
@@ -132,7 +135,7 @@ public class StudentmanageController {
         StudentDTO dto = new StudentDTO(studentid, name, email, courseid, contact);
         
         try{
-            boolean saved = StudentModel.saveStudent(dto);
+            boolean saved = studentBO.saveStudent(dto);
             if(saved){
                 System.out.println("Student saved successfully!");
                 
@@ -175,7 +178,7 @@ public class StudentmanageController {
         StudentDTO dto = new StudentDTO(studentid, name, email, courseid, contact);
         
         try{
-            boolean updated = StudentModel.updateStudent(dto);
+            boolean updated = studentBO.updateStudent(dto);
             if(updated){
                 System.out.println("Student updated successfully!");
                 
@@ -210,7 +213,7 @@ public class StudentmanageController {
         
         try{
             
-          ObservableList<StudentDTO> studentList = FXCollections.observableArrayList(StudentModel.getAllStudents());
+          ObservableList<StudentDTO> studentList = FXCollections.observableArrayList(studentBO.getAllStudents());
           
           colID.setCellValueFactory(new PropertyValueFactory<>("studentId"));
           colName.setCellValueFactory(new PropertyValueFactory<>("name"));
