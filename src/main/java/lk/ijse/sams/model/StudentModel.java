@@ -95,4 +95,25 @@ public class StudentModel {
         return false;
     }
     
+    public static List<String> getAllStudentIds() throws SQLException {
+
+       String sql = "SELECT student_id FROM student";
+
+       Connection connection = DBConnection.getInstance().getConnection();
+
+       Statement stm = connection.createStatement();
+
+       ResultSet rs = stm.executeQuery(sql);
+
+       List<String> studentList = new ArrayList<>();
+
+       while (rs.next()) {
+
+         studentList.add(rs.getString("student_id"));
+
+       }
+
+    return studentList;
+    }
+    
 }

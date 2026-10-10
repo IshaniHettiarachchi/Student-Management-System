@@ -1,14 +1,21 @@
 package lk.ijse.sams.controller;
 
+import java.sql.SQLException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.sams.dto.AttendanceDTO;
+import lk.ijse.sams.model.AttendanceModel;
+import lk.ijse.sams.model.StudentModel;
 
 public class AttendanceController {
 
@@ -16,74 +23,247 @@ public class AttendanceController {
     private Button btnDelete;
 
     @FXML
-    private Button btnReset;
+    private Button btnSave;
 
     @FXML
-    private Button btnSave;
+    private Button btnSearch;
 
     @FXML
     private Button btnUpdate;
 
     @FXML
-    private ComboBox<?> cmbStatus;
+    private Button btnView;
 
     @FXML
-    private ComboBox<?> cmbStudentId;
+    private ComboBox<String> cmbAttendance;
 
     @FXML
-    private TableColumn<?, ?> colDate;
+    private ComboBox<String> cmbStudentID;
 
     @FXML
-    private TableColumn<?, ?> colId;
+    private TableColumn<AttendanceDTO, String> colAttendance;
 
     @FXML
-    private TableColumn<?, ?> colSession;
+    private TableColumn<AttendanceDTO, String> colDate;
 
     @FXML
-    private TableColumn<?, ?> colStatus;
+    private TableColumn<AttendanceDTO, String> colSessionName;
 
     @FXML
-    private Label lblDate;
+    private TableColumn<AttendanceDTO, String> colStudentID;
 
     @FXML
-    private Label lblSession;
+    private Label lblSessionName;
 
     @FXML
-    private AnchorPane lblStatus;
+    private Label lbltopic;
 
     @FXML
-    private Label lblStudentid;
+    private TableView<AttendanceDTO> tblAttendance;
 
     @FXML
-    private Label lblTopic;
+    private TextField txtDate;
 
     @FXML
-    private TableView<?> tblAttendance;
-
+    private TextField txtSessionName;
+    
     @FXML
-    private TextField txtSession;
+    public void initialize(){
+        
+       cmbAttendance.getItems().addAll("Present", "Absent");
+       
+       colStudentID.setCellValueFactory(new PropertyValueFactory<>("studentId"));
+       colSessionName.setCellValueFactory(new PropertyValueFactory<>("sessionName"));
+       colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+       colAttendance.setCellValueFactory(new PropertyValueFactory<>("status"));
+          
+       loadstudentIds();
+       
+    
+    }
+    
+    private void loadstudentIds(){
+        
+        try{
+            cmbStudentID.getItems().setAll(StudentModel.getAllStudentIds());
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+    
+    private void showAlert(Alert.AlertType type, String message) {
 
-    @FXML
-    private TextField txtdate;
+    Alert alert = new Alert(type);
+    alert.setTitle("Attendance");
+    alert.setHeaderText(null);
+    alert.setContentText(message);
+    alert.showAndWait();
+    }  
+    
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+           
+        AttendanceDTO dto = tblAttendance.getSelectionModel().getSelectedItem();
+        
+        if (dto == null) {
+        showAlert(Alert.AlertType.WARNING,
+                "Please select an attendance record!");
+        return;
+        }
+        
+        String studenId = dto.getStudentId();
+        String sessionName = dto.getSessionName();
+        
+        try{
+            boolean deleted = AttendanceModel.deleteAttendance(studenId, sessionName);
+            
+            if(deleted){
+                System.out.println("Attendance deleted successfully!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Attendance deleted  successfully!");
+                alert.showAndWait();
+                
+                 txtSessionName.clear();
+                 txtDate.clear();
+                 cmbStudentID.setValue(null);
+                 cmbAttendance.setValue(null);
+                
+                
+            }else{
+                System.out.println("Attendance deletion  failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Delete failed!");
+                alert.showAndWait();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+       
     }
 
-    @FXML
-    void btnResetOnAction(ActionEvent event) {
 
-    }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-
+        
+        String studentId = cmbStudentID.getValue();
+        String sessionName = txtSessionName.getText();
+        String date = txtDate.getText();
+        String status = cmbAttendance.getValue();
+       
+        AttendanceDTO dto = new AttendanceDTO(studentId, sessionName, date, status);
+        
+        try{
+            boolean saved = AttendanceModel.saveAttendance(dto);
+            
+            if(saved){
+                System.out.println("Attendance saved successfully!");
+                
+                txtSessionName.clear();
+                cmbStudentID.setValue(null);
+                cmbAttendance.setValue(null);
+                txtDate.clear();
+              
+            }else{
+                System.out.println("Attendance saved failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Attendance saved failed!");
+                alert.showAndWait();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     @FXML
-    void btnUpdateOnAction(ActionEvent event) {
+    void btnSearchOnAction(ActionEvent event) {
 
+         String sessionName = txtSessionName.getText().trim();
+         String studentId = cmbStudentID.getValue();
+         
+        try {
+            ObservableList<AttendanceDTO> attendanceList = FXCollections.observableArrayList(AttendanceModel.searchAttendance(sessionName));
+
+            tblAttendance.setItems(attendanceList);
+
+            if (attendanceList.isEmpty()) {
+                showAlert(Alert.AlertType.INFORMATION,
+                        "No attendance records found!");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    
+    }
+
+    
+
+    @FXML
+    void btnUpdateOnAction(ActionEvent event) {
+        
+        String studentId = cmbStudentID.getValue();
+        String sessionName = txtSessionName.getText();
+        String date = txtDate.getText();
+        String status = cmbAttendance.getValue();
+        
+        AttendanceDTO dto = new AttendanceDTO( studentId, sessionName, date, status);
+        
+        try{
+            boolean updated = AttendanceModel.updateAttendance(dto);
+            
+            if(updated){
+                System.out.println("Attendance updated successfully!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Attendance updated successfully!");
+                alert.showAndWait();
+                
+                txtSessionName.clear();
+                cmbStudentID.setValue(null);
+                cmbAttendance.setValue(null);
+                txtDate.clear();
+
+          
+            }else{
+                System.out.println("Attendance update failed!");
+                
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Attendance update failed!");
+                alert.showAndWait();
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void btnViewOnAction(ActionEvent event) {
+        
+        
+        try{
+            
+          ObservableList<AttendanceDTO> attendanceList = FXCollections.observableArrayList(AttendanceModel.getAllAttendance());
+          
+          tblAttendance.setItems(attendanceList);
+          
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 
 }

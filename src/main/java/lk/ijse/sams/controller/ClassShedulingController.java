@@ -18,9 +18,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.sams.model.CourseModel;
 import lk.ijse.sams.model.LecturerModel;
 
-
-
-
 public class ClassShedulingController {
 
     @FXML
@@ -287,9 +284,7 @@ public class ClassShedulingController {
     } catch (SQLException e) {
         e.printStackTrace();
     }
-        
-        
-
+               
     }
 
     @FXML
