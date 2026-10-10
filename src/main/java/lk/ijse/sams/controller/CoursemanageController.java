@@ -10,13 +10,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import lk.ijse.sams.dto.CourseDTO;
-import lk.ijse.sams.model.CourseModel;
+import lk.ijse.sams.bo.custom.CourseBO;
+import lk.ijse.sams.bo.custom.impl.CourseBOImpl;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 
 public class CoursemanageController {
+    
+private final CourseBO courseBO = new CourseBOImpl();
 
     @FXML
     private Button btnDelete;
@@ -76,7 +79,7 @@ public class CoursemanageController {
         
         try{
             
-          ObservableList<CourseDTO> courseList = FXCollections.observableArrayList(CourseModel.getAllCourses());
+          ObservableList<CourseDTO> courseList = FXCollections.observableArrayList(courseBO.getAllCourses());
           
           colID.setCellValueFactory(new PropertyValueFactory<>("courseId"));
           colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -97,7 +100,7 @@ public class CoursemanageController {
         String courseId = txtID.getText();
         
         try{
-            boolean deleted = CourseModel.deleteCourse(courseId);
+            boolean deleted = courseBO.deleteCourse(courseId);
             
             if(deleted){
                 System.out.println("Course deleted successfully!");
@@ -145,7 +148,7 @@ public class CoursemanageController {
         CourseDTO dto = new CourseDTO(courseid, name, subject, duration);
         
         try{
-            boolean saved = CourseModel.saveCourse(dto);
+            boolean saved = courseBO.saveCourse(dto);
             if(saved){
                 System.out.println("Course saved successfully!");
                 
@@ -183,7 +186,7 @@ public class CoursemanageController {
         CourseDTO dto = new CourseDTO(courseid, name, subject, duration);
         
         try{
-            boolean updated = CourseModel.updateCourse(dto);
+            boolean updated = courseBO.updateCourse(dto);
             if(updated){
                 System.out.println("Course saved successfully!");
                 
