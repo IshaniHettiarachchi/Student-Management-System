@@ -9,30 +9,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.ReportsController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.sams.controller.ReportsController">
    <children>
-      <Label layoutX="41.0" layoutY="26.0" prefHeight="39.0" prefWidth="630.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Attendance Reporting">
+      <Label layoutX="17.0" layoutY="26.0" prefHeight="39.0" prefWidth="870.0" style="-fx-alignment: center; -fx-background-color: #a29bfe;" text="Attendance Reporting">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <Label fx:id="lblStudentID" layoutX="41.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="Student ID" />
-      <Label fx:id="lblCourse" layoutX="185.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="Course" />
-      <Label fx:id="lblStartdate" layoutX="360.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" text="Start Date" />
-      <ComboBox fx:id="cmbStudentID" layoutX="38.0" layoutY="125.0" prefHeight="26.0" prefWidth="144.0" />
-      <ComboBox fx:id="cmbCourse" layoutX="185.0" layoutY="125.0" prefHeight="26.0" prefWidth="174.0" />
-      <TextField fx:id="txtStartdate" layoutX="363.0" layoutY="125.0" />
-      <Label fx:id="lblEnddate" layoutX="513.0" layoutY="99.0" prefHeight="26.0" prefWidth="144.0" text="End date" />
-      <TextField fx:id="txtEnddate" layoutX="513.0" layoutY="125.0" prefHeight="26.0" prefWidth="158.0" />
-      <TableView fx:id="tblAttendance" layoutX="38.0" layoutY="197.0" prefHeight="374.0" prefWidth="630.0">
+      <Label fx:id="lblStudentID" layoutX="24.0" layoutY="99.0" prefHeight="26.0" prefWidth="187.0" style="-fx-background-color: #CCFFCC;" text="Student ID" />
+      <Label fx:id="lblCourse" layoutX="226.0" layoutY="99.0" prefHeight="26.0" prefWidth="226.0" style="-fx-background-color: #CCFFCC;" text="Course" />
+      <Label fx:id="lblStartdate" layoutX="463.0" layoutY="99.0" prefHeight="26.0" prefWidth="219.0" style="-fx-background-color: #CCFFCC;" text="Start Date" />
+      <ComboBox fx:id="cmbStudentID" layoutX="18.0" layoutY="125.0" prefHeight="26.0" prefWidth="194.0" />
+      <ComboBox fx:id="cmbCourse" layoutX="226.0" layoutY="125.0" prefHeight="26.0" prefWidth="226.0" />
+      <TextField fx:id="txtStartdate" layoutX="463.0" layoutY="125.0" prefHeight="26.0" prefWidth="219.0" />
+      <Label fx:id="lblEnddate" layoutX="697.0" layoutY="99.0" prefHeight="26.0" prefWidth="187.0" style="-fx-background-color: #CCFFCC;" text="End date" />
+      <TextField fx:id="txtEnddate" layoutX="697.0" layoutY="125.0" prefHeight="26.0" prefWidth="187.0" />
+      <TableView fx:id="tblReport" layoutX="18.0" layoutY="199.0" prefHeight="374.0" prefWidth="869.0">
         <columns>
-          <TableColumn fx:id="colStudentID" prefWidth="145.60003662109375" text="Student ID" />
-          <TableColumn fx:id="colCourse" prefWidth="202.4000244140625" text="Course" />
-            <TableColumn fx:id="colStartdate" prefWidth="130.39999389648438" text="Start Date" />
-            <TableColumn fx:id="colEnddate" prefWidth="150.4000244140625" text="End Date" />
+          <TableColumn fx:id="colStudentID" prefWidth="96.79999160766602" text="Student ID" />
+          <TableColumn fx:id="colStudentName" prefWidth="195.99998474121094" text="Student Name" />
+            <TableColumn fx:id="colCourse" prefWidth="108.0" text="Course" />
+            <TableColumn fx:id="colSessionName" prefWidth="226.4000244140625" text="Session Name" />
+            <TableColumn fx:id="colDate" prefWidth="121.5999755859375" text="Date" />
+            <TableColumn fx:id="colStatus" prefWidth="119.20003662109377" text="Status" />
         </columns>
       </TableView>
-      <Button fx:id="btnSearch" layoutX="38.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnSearchOnAction" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: yellow;" text="Search" />
-      <Button fx:id="btnReset" layoutX="496.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="26.0" prefWidth="174.0" style="-fx-background-color: #00cec9;" text="Reset" />
+      <Button fx:id="btnCreate" layoutX="463.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnCreateOnAction" prefHeight="26.0" prefWidth="219.0" style="-fx-background-color: #66C1FF;" text="Create Report" />
+      <Button fx:id="btnReset" layoutX="691.0" layoutY="162.0" mnemonicParsing="false" onAction="#btnResetOnAction" prefHeight="26.0" prefWidth="194.0" style="-fx-background-color: #00cec9;" text="Reset" />
    </children>
 </AnchorPane>

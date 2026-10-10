@@ -137,5 +137,26 @@ public class CourseModel {
     return courseList;
     }
     
+    public static List<String> getAllCourseNames() throws SQLException {
+
+       String sql = "SELECT name FROM course";
+       
+       List<String> courseList = new ArrayList<>();
+
+       Connection connection = DBConnection.getInstance().getConnection();
+       
+        try ( Statement stm = connection.createStatement();
+              ResultSet rs = stm.executeQuery(sql);
+            ){
+           
+           while (rs.next()) {
+           courseList.add(rs.getString("name"));
+
+           }
+        }
+       
+      
+    return courseList;
+    }
     
 }
