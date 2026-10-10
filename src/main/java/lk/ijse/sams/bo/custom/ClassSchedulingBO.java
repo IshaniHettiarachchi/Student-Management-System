@@ -24,5 +24,7 @@ public interface ClassSchedulingBO extends SuperBO {
     List<ClassSchedulingDTO> getAllClassScheduling() throws SQLException;
 
     ClassSchedulingDTO searchClassSchedule(String sessionName) throws SQLException;
+
+   
     
 }
