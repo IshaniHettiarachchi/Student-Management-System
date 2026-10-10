@@ -13,12 +13,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.sams.bo.custom.CourseBO;
+import lk.ijse.sams.bo.custom.LecturerBO;
+import lk.ijse.sams.bo.custom.impl.CourseBOImpl;
+import lk.ijse.sams.bo.custom.impl.LecturerBOImpl;
 import lk.ijse.sams.dto.LecturerDTO;
 import lk.ijse.sams.model.CourseModel;
 import lk.ijse.sams.model.LecturerModel;
 
 
 public class LecturermanageController {
+    
+private final LecturerBO lecturerBO = new LecturerBOImpl();
+private final CourseBO courseBO = new CourseBOImpl();
 
     @FXML
     private Button btnDelete;
@@ -78,7 +85,7 @@ public class LecturermanageController {
     public void initialize(){
         
          try{
-            cmbSubject.getItems().addAll(CourseModel.getAllSubjects());
+            cmbSubject.getItems().addAll(courseBO.getAllSubjects());
             
         } catch (SQLException e){
            e.printStackTrace();
@@ -89,7 +96,7 @@ public class LecturermanageController {
         
         try{
             
-          ObservableList<LecturerDTO> lecturerList = FXCollections.observableArrayList(LecturerModel.getAllLecturer());
+          ObservableList<LecturerDTO> lecturerList = FXCollections.observableArrayList(lecturerBO.getAllLecturer());
           
           colId.setCellValueFactory(new PropertyValueFactory<>("lecturerId"));
           colName.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -111,7 +118,7 @@ public class LecturermanageController {
         String lecturerId = txtID.getText();
         
         try{
-            boolean deleted = LecturerModel.deleteLecturer(lecturerId);
+            boolean deleted = lecturerBO.deleteLecturer(lecturerId);
             
             if(deleted){
                 System.out.println("Lecturer deleted successfully!");
@@ -160,7 +167,7 @@ public class LecturermanageController {
         LecturerDTO dto = new LecturerDTO(lecturerid, name, email, subject);
         
         try{
-            boolean saved = LecturerModel.saveLecturer(dto);
+            boolean saved = lecturerBO.saveLecturer(dto);
             if(saved){
                 System.out.println("Lecturer saved successfully!");
                 
@@ -200,7 +207,7 @@ public class LecturermanageController {
         LecturerDTO dto = new LecturerDTO(lecturerid, name, email, subject);
         
         try{
-            boolean updated = LecturerModel.updateLecturer(dto);
+            boolean updated = lecturerBO.updateLecturer(dto);
             
             if(updated){
                 System.out.println("Lecturer updated successfully!");
