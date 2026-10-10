@@ -15,11 +15,22 @@ import lk.ijse.sams.model.ClassSchedulingModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lk.ijse.sams.bo.custom.ClassSchedulingBO;
+import lk.ijse.sams.bo.custom.CourseBO;
+import lk.ijse.sams.bo.custom.LecturerBO;
+import lk.ijse.sams.bo.custom.impl.ClassSchedulingBOImpl;
+import lk.ijse.sams.bo.custom.impl.CourseBOImpl;
+import lk.ijse.sams.bo.custom.impl.LecturerBOImpl;
 import lk.ijse.sams.model.CourseModel;
 import lk.ijse.sams.model.LecturerModel;
 
 public class ClassShedulingController {
 
+private final ClassSchedulingBO classSchedulingBO = new ClassSchedulingBOImpl();
+
+private final CourseBO courseBO = new CourseBOImpl();
+
+private final LecturerBO lecturerBO = new LecturerBOImpl();
     @FXML
     private Button btnDelete;
 
@@ -112,7 +123,7 @@ public class ClassShedulingController {
     private void loadcourseIds(){
         
         try{
-            cmbCourseID.getItems().setAll(CourseModel.getAllCourseIds());
+            cmbCourseID.getItems().setAll(courseBO.getAllCourseIds());
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -121,7 +132,7 @@ public class ClassShedulingController {
     private void loadLecturerIds(){
         
         try{
-            cmblecturerID.getItems().setAll(LecturerModel.getAllLecturerIds());
+            cmblecturerID.getItems().setAll(lecturerBO.getAllLecturerIds());
         }catch (SQLException e){
             e.printStackTrace();
         }
@@ -131,7 +142,7 @@ public class ClassShedulingController {
     private void loadsubject(){
         
         try{
-            cmbSubject.getItems().addAll(CourseModel.getAllSubjects());
+            cmbSubject.getItems().addAll(courseBO.getAllSubjects());
         } catch (SQLException e){
            e.printStackTrace();
         }
@@ -142,7 +153,7 @@ public class ClassShedulingController {
     
          try{
             
-          ObservableList<ClassSchedulingDTO> classList = FXCollections.observableArrayList(ClassSchedulingModel.getAllclassScheduling());
+          ObservableList<ClassSchedulingDTO> classList = FXCollections.observableArrayList(classSchedulingBO.getAllClassScheduling());
           
           colSession.setCellValueFactory(new PropertyValueFactory<>("sessionName"));
           colcourse.setCellValueFactory(new PropertyValueFactory<>("CourseId"));
@@ -166,7 +177,7 @@ public class ClassShedulingController {
         String sessionName = txtSessionName.getText();
         
         try{
-            boolean deleted = ClassSchedulingModel.deleteClassScheduling(sessionName);
+            boolean deleted = classSchedulingBO.deleteClassScheduling(sessionName);
             
             if(deleted){
                 System.out.println("Class schedule deleted successfully!");
@@ -208,7 +219,7 @@ public class ClassShedulingController {
         ClassSchedulingDTO dto = new ClassSchedulingDTO(sessionName, courseId, subject, lecturerId, date, startTime, endTime);
         
         try{
-            boolean saved = ClassSchedulingModel.saveClassScheduling(dto);
+            boolean saved = classSchedulingBO.saveClassScheduling(dto);
             
             if(saved){
                 System.out.println("Class scheduled successfully!");
@@ -251,7 +262,7 @@ public class ClassShedulingController {
         
         try {
 
-        ClassSchedulingDTO dto = ClassSchedulingModel.searchClassSchedule(sessionName);
+        ClassSchedulingDTO dto = classSchedulingBO.searchClassSchedule(sessionName);
 
         if (dto != null) {
 
@@ -301,7 +312,7 @@ public class ClassShedulingController {
         ClassSchedulingDTO dto = new ClassSchedulingDTO(sessionName, courseId, subject, lecturerId, date, startTime, endTime);
         
         try{
-            boolean updated = ClassSchedulingModel.updateClassScheduling(dto);
+            boolean updated = classSchedulingBO.updateClassScheduling(dto);
             
             if(updated){
                 System.out.println("Class scheduled updated successfully!");
