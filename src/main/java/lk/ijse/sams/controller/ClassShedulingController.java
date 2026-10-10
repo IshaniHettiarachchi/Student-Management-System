@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import java.sql.SQLException;
 import javafx.scene.control.Alert;
 import lk.ijse.sams.dto.ClassSchedulingDTO;
-import lk.ijse.sams.model.ClassSchedulingModel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,8 +20,7 @@ import lk.ijse.sams.bo.custom.LecturerBO;
 import lk.ijse.sams.bo.custom.impl.ClassSchedulingBOImpl;
 import lk.ijse.sams.bo.custom.impl.CourseBOImpl;
 import lk.ijse.sams.bo.custom.impl.LecturerBOImpl;
-import lk.ijse.sams.model.CourseModel;
-import lk.ijse.sams.model.LecturerModel;
+
 
 public class ClassShedulingController {
 

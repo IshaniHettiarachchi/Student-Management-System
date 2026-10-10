@@ -18,8 +18,8 @@ import lk.ijse.sams.bo.custom.StudentBO;
 import lk.ijse.sams.bo.custom.impl.AttendanceBOImpl;
 import lk.ijse.sams.bo.custom.impl.StudentBOImpl;
 import lk.ijse.sams.dto.AttendanceDTO;
-import lk.ijse.sams.model.AttendanceModel;
-import lk.ijse.sams.model.StudentModel;
+
+
 
 public class AttendanceController {
     

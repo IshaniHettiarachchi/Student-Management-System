@@ -17,14 +17,20 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import lk.ijse.sams.dto.AttendanceDTO;
+import lk.ijse.sams.bo.custom.CourseBO;
+import lk.ijse.sams.bo.custom.ReportBO;
+import lk.ijse.sams.bo.custom.StudentBO;
+import lk.ijse.sams.bo.custom.impl.CourseBOImpl;
+import lk.ijse.sams.bo.custom.impl.ReportBOImpl;
+import lk.ijse.sams.bo.custom.impl.StudentBOImpl;
 import lk.ijse.sams.dto.AttendanceReportDTO;
-import lk.ijse.sams.model.CourseModel;
-import lk.ijse.sams.model.ReportModel;
-import lk.ijse.sams.model.StudentModel;
+
 
 public class ReportsController implements Initializable {
+    
+private final ReportBO reportBO = new ReportBOImpl(); 
+private final StudentBO studentBO = new StudentBOImpl(); 
+private final CourseBO courseBO = new CourseBOImpl();
 
     @FXML
     private Button btnCreate;
@@ -88,8 +94,8 @@ public class ReportsController implements Initializable {
        colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
        
        try{
-            cmbStudentID.setItems(FXCollections.observableArrayList(StudentModel.getAllStudentIds()));
-            cmbCourse.setItems(FXCollections.observableArrayList(CourseModel.getAllCourseNames()));
+            cmbStudentID.setItems(FXCollections.observableArrayList(studentBO.getAllStudentIds()));
+            cmbCourse.setItems(FXCollections.observableArrayList(courseBO.getAllCourseNames()));
             
         }catch (SQLException e){
             e.printStackTrace();
@@ -103,14 +109,14 @@ public class ReportsController implements Initializable {
         String studentId = cmbStudentID.getValue();
         String courseName = cmbCourse.getValue();
         String startDate = txtStartdate.getText().trim();
-        String endDate = txtEnddate.getText();
+        String endDate = txtEnddate.getText().trim();
         
         if (startDate.isEmpty()) { startDate = null; } 
         if (endDate.isEmpty()) { endDate = null; }
         
         try {
             
-            List<AttendanceReportDTO> reportList = ReportModel.getAttendanceReport(studentId, courseName, startDate, endDate);
+            List<AttendanceReportDTO> reportList = reportBO.getAttendanceReport(studentId, courseName, startDate, endDate);
             
             ObservableList<AttendanceReportDTO> data = FXCollections.observableArrayList(reportList);
             

@@ -7,13 +7,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import java.sql.SQLException;
 import lk.ijse.sams.dto.UserDTO;
-import lk.ijse.sams.model.UserModel;
 import lk.ijse.sams.App;
 import java.io.IOException;
+import javafx.scene.control.Alert;
+import lk.ijse.sams.bo.custom.UserBO;
+import lk.ijse.sams.bo.custom.impl.UserBOImpl;
 
 
 
 public class LoginviewController {
+    
+private final UserBO userBO = new UserBOImpl();
 
     @FXML
     private Button btnLogin;
@@ -40,15 +44,20 @@ public class LoginviewController {
         
         UserDTO dto  = new UserDTO(user,password);
         
-        UserModel model =new UserModel();
         
         try {
 
-          UserDTO loggedUser = model.checkLogin(dto);
+          UserDTO loggedUser = userBO.checkLogin(dto);
 
           if (loggedUser != null) {
 
              System.out.println("Login Success");
+             
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText(" Login successfully!");
+                alert.showAndWait();
 
           if (loggedUser.getRole().equals("ADMIN")) {
 
@@ -63,6 +72,12 @@ public class LoginviewController {
         } else {
 
              System.out.println("Invalid Username or Password");
+             
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Login failed!");
+                alert.showAndWait();
 
           }
 

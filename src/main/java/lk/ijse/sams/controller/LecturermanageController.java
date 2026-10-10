@@ -18,8 +18,7 @@ import lk.ijse.sams.bo.custom.LecturerBO;
 import lk.ijse.sams.bo.custom.impl.CourseBOImpl;
 import lk.ijse.sams.bo.custom.impl.LecturerBOImpl;
 import lk.ijse.sams.dto.LecturerDTO;
-import lk.ijse.sams.model.CourseModel;
-import lk.ijse.sams.model.LecturerModel;
+
 
 
 public class LecturermanageController {
